@@ -17,103 +17,120 @@ namespace LinkListManual
             this.Head = null;
         }
 
-        public void Add(T data)
+        public void AddFirst(T data)
         {
             Node<T> newNode= new Node<T>(data);
-
             if (Head == null)
             {
                 Head = newNode;
             }
             else {
+                newNode.Next= Head;
+                Head= newNode;
+            }
+        }
 
-                Node<T> current= Head;
+        public void AddLast(T data)
+        {
+            Node<T> newNode = new Node<T>(data);
+            if (Head == null)
+            {
+                Head = newNode;
+            }
+            else
+            {
+                Node<T> current = Head;
 
                 while (current.Next != null)
                 {
                     current= current.Next;
                 }
-                current.Next = newNode;
+                if (current.Next == null)
+                {
+                    current.Next= newNode;
+                }
             }
         }
 
-        public bool Delete(T data)
+
+        public void AddAfter(T keyData,T newData)
         {
+            Node<T> newNode = new Node<T>(newData);
             if (Head == null)
             {
-                return false;
+                Head = newNode;
             }
             else
             {
                 Node<T> current = Head;
 
-                while (current.Next != null && !current.Next.Data.Equals(data))
-                {
-                    current=current.Next;
-                }
-                if (current.Next != null && current.Next.Data.Equals(data))
-                {
-                    current.Next = current.Next.Next;
-                    return true;
-                }
-                return false;
-            }
-        }
-
-
-        public bool Search(T data)
-        {
-            if (Head == null)
-            {
-                return false;
-            }
-            else 
-            {
-                Node<T> current = Head;
-
-                while (current.Next != null && !current.Data.Equals(data))
+                while (!current.Data.Equals(keyData))
                 {
                     current = current.Next;
                 }
-
-                if (current.Data.Equals(data))
+                if (current.Next == null)
                 {
-                    return true;
-                } 
-                return false;
+                    current.Next = newNode;
+                }
+                else {
+                    newNode.Next = current.Next;
+                    current.Next= newNode;
+                }
             }
         }
 
 
-        public string Print()
+        public void AddBefore(T keyData, T newData)
         {
-            string s = "";
+            Node<T> newNode = new Node<T>(newData);
             if (Head == null)
             {
-                s = "No Data found";
+                Head = newNode;
+            }
+            else if (Head.Data.Equals(keyData))
+            {
+                newNode.Next = Head;
+                Head=newNode;
             }
             else
             {
-                Node<T> current = Head;
-
-                while (current.Next != null)
+                Node<T> current= Head;
+                while (!current.Next.Data.Equals(keyData))
                 {
+                    current = current.Next;
+                }
+                newNode.Next= current.Next;
+                current.Next = newNode;
+
+            }
+        }
+
+        public void Print()
+        {
+            if (Head == null)
+            {
+                Console.WriteLine("List Empty");
+            }
+            else {
+                Console.WriteLine("Existing List: ");
+                Node<T> current = Head;
+                while (current != null)
+                {
+                    Console.Write(current.Data +" ");
 
                     if (current.Next != null)
                     {
-                        s = s + current.Data + " -> ";
+                        Console.Write("->");
                     }
-                    
+                    else {
+                        Console.Write("\n");
+                    }
                     current = current.Next;
                 }
-
-                s = s + current.Data+ "\n";
             }
 
-            return s;
         }
 
-        
 
     }
 }
