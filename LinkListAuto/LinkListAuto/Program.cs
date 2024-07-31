@@ -29,6 +29,7 @@ namespace LinkListAuto
             Console.Write("\n");
             var l =list.Reverse();
             Console.Write("\n");
+           
             foreach (int i in l)
             {
                 Console.Write(i + " ");
