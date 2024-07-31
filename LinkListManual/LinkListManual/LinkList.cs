@@ -79,6 +79,32 @@ namespace LinkListManual
             }
         }
 
+        public void AddAfterNode(Node<T> keyNode, T newData)
+        {
+            Node<T> newNode = new Node<T>(newData);
+            if (Head == null)
+            {
+                Head = newNode;
+            }
+            else
+            {
+                Node<T> current = Head;
+
+                while (!current.Data.Equals(keyNode.Data))
+                {
+                    current = current.Next;
+                }
+                if (current.Next == null)
+                {
+                    current.Next = newNode;
+                }
+                else
+                {
+                    newNode.Next = current.Next;
+                    current.Next = newNode;
+                }
+            }
+        }
 
         public void AddBefore(T keyData, T newData)
         {
@@ -102,6 +128,86 @@ namespace LinkListManual
                 newNode.Next= current.Next;
                 current.Next = newNode;
 
+            }
+        }
+
+
+        public void AddBefore(Node<T> keyNode, T newData)
+        {
+            Node<T> newNode = new Node<T>(newData);
+            if (Head == null)
+            {
+                Head = newNode;
+            }
+            else if (Head.Data.Equals(keyNode.Data))
+            {
+                newNode.Next = Head;
+                Head = newNode;
+            }
+            else
+            {
+                Node<T> current = Head;
+                while (!current.Next.Data.Equals(keyNode.Data))
+                {
+                    current = current.Next;
+                }
+                newNode.Next = current.Next;
+                current.Next = newNode;
+
+            }
+        }
+
+
+
+        public Node<T> FindFirst(T keyData)
+        {
+            
+            if (Head == null)
+            {
+                return null;
+            }
+            
+            else
+            {
+                Node<T> current = Head;
+                while (!current.Data.Equals(keyData))
+                {
+                    current = current.Next;
+                }
+                
+                return current;
+            }
+        }
+
+        public Node<T> FindLast(T keyData)
+        {
+
+            if (Head == null)
+            {
+                return null;
+            }
+
+            else
+            {
+                Node<T> current = Head;
+                Node<T> last = Head;
+                while (current!=null)
+                {
+                    if (current.Data.Equals(keyData))
+                    {
+                        last = current;
+                    }
+                    if (current.Next == null)
+                    {
+                        break;
+                    }
+                    else {
+                        current = current.Next;
+                    }
+                    
+                }
+
+                return last;
             }
         }
 
