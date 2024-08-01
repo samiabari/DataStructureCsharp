@@ -132,7 +132,7 @@ namespace LinkListManual
         }
 
 
-        public void AddBefore(Node<T> keyNode, T newData)
+        public void AddBeforeNode(Node<T> keyNode, T newData)
         {
             Node<T> newNode = new Node<T>(newData);
             if (Head == null)
@@ -208,6 +208,71 @@ namespace LinkListManual
                 }
 
                 return last;
+            }
+        }
+
+
+        public bool Remove(T keyData)
+        {
+            if (Head == null)
+            {
+                return false;
+            }
+            else if (Head.Data.Equals(keyData))
+            {
+               
+                Head = Head.Next;
+                return true;
+            }
+            else
+            {
+                Node<T> current = Head;
+                while (!current.Next.Data.Equals(keyData))
+                {
+                    current = current.Next;
+                }
+                current.Next = current.Next.Next;
+                return true;
+            }
+        }
+
+        public bool RemoveFirst()
+        {
+
+            if (Head == null)
+            {
+                return false;
+            }
+            else if (Head.Next == null)
+            {
+                Head = null;
+                return true;
+            }
+            else
+            {
+                Head= Head.Next;
+                return true;
+            }
+        }
+
+        public bool RemoveLast()
+        {
+           
+            if (Head == null)
+            {
+               return  false;
+            }
+            else
+            {
+                Node<T> current = Head;
+
+                while (current.Next.Next != null)
+                {
+                    current = current.Next;
+                }
+                current.Next = null;
+                return true;
+
             }
         }
 
