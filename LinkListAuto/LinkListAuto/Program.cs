@@ -17,7 +17,7 @@ namespace LinkListAuto
             newNode = new LinkedListNode<int>(7);
             LinkedListNode<int> postNode = list.Find(4);
             list.AddAfter(postNode, newNode);
-           
+            
             foreach (int i in list)
             {
                 Console.Write(i.ToString()+" ");

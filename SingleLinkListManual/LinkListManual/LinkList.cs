@@ -7,9 +7,9 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LinkListManual
 {
-    internal class LinkList<T>
+    public class LinkList<T>
     {
-        Node<T> Head { set; get; }
+        public Node<T> Head { set; get; }
         
 
         public LinkList()
@@ -90,7 +90,7 @@ namespace LinkListManual
             {
                 Node<T> current = Head;
 
-                while (!current.Data.Equals(keyNode.Data))
+                while (!current.Equals(keyNode))
                 {
                     current = current.Next;
                 }
@@ -139,7 +139,7 @@ namespace LinkListManual
             {
                 Head = newNode;
             }
-            else if (Head.Data.Equals(keyNode.Data))
+            else if (Head.Equals(keyNode))
             {
                 newNode.Next = Head;
                 Head = newNode;
@@ -147,7 +147,7 @@ namespace LinkListManual
             else
             {
                 Node<T> current = Head;
-                while (!current.Next.Data.Equals(keyNode.Data))
+                while (!current.Next.Equals(keyNode))
                 {
                     current = current.Next;
                 }

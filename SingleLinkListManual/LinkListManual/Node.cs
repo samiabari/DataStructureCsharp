@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkListManual
 {
-    internal class Node<T>
+    public class Node<T>
     {
         public T Data { set; get; }
         public Node<T> Next { set; get; }
